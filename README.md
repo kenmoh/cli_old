@@ -1,9 +1,7 @@
-# CREATE FastAPI APP
+# FastAPI CREATE APP
 
-### About CREATE FastAPI APP
-
-create-fastapi-app is a CLI tool for generating bare-bone FastAPI project.
-When you run `create-fastapi-app new [project_name]`, it generates the following project structure:
+fastapi-create-app is a CLI tool for generating bare-bone FastAPI project.
+When you run `fastapi-create-app [project_name]`, it generates the following project structure:
 
     .
     ├── app/
@@ -44,11 +42,11 @@ When you run `create-fastapi-app new [project_name]`, it generates the following
 
 ### INSTALLATION
 
-`pip install create-fastapi-app`
+`pip install fastapi-create-app`
 
 ### COMMAND
 
-`create-fastapi-app new [project_name]`
+`fastapi-create-app [project_name]`
 
 This command initialized an empty git repository, create a virtual environment using the python builtin `venv` by appending `_evv` to the project name, i.e `[project_name]_env`.
 

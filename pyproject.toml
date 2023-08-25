@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "create-fastapi-app"
+name = "fastapi_create_app"
 version = "1.0"
 description = "A CLI to generate bare-bone FastAPI project"
 authors = ["kenmoh <kenneth.aremoh@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-create-fastapi-app = "create_fastapi_app.main:app"
+fastapi-create-app = "fastapi_create_app.main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,3 +19,5 @@ pytest = "^7.2.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
