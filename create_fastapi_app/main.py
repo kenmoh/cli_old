@@ -54,8 +54,8 @@ def get_db():
 """
 
 
-@app.command()
-def new(
+# @app.command()
+def create_fastapi_project(
     project_name: str = typer.Argument(..., help="The name of the project"),
     orm_typ: str = typer.prompt(
         f"What ORM do you want to use for this project? [{SQLALCHEMY_ORM}/{BEANIE_ORM}]",
@@ -165,4 +165,4 @@ def callback():
 
 
 if __name__ == "__main__":
-    app()
+    typer.run(create_fastapi_project)
