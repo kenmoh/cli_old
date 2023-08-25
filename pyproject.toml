@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "gener8app"
+name = "create-fastapi-app"
 version = "1.0"
 description = "A CLI to generate bare-bone FastAPI project"
 authors = ["kenmoh <kenneth.aremoh@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-gener8app = "gener8app.main:app"
+create-fastapi-app = "create_fastapi_app.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.10"

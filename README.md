@@ -1,9 +1,9 @@
-# GENER8APP
+# CREATE FastAPI APP
 
-### About GENER8APP
+### About CREATE FastAPI APP
 
-Gener8app is a CLI tool for generating bare-bone FastAPI project.
-When you run `gener8app new [project_name]`, it generates the following project structure:
+create-fastapi-app is a CLI tool for generating bare-bone FastAPI project.
+When you run `create-fastapi-app new [project_name]`, it generates the following project structure:
 
     .
     ├── app/
@@ -44,11 +44,11 @@ When you run `gener8app new [project_name]`, it generates the following project 
 
 ### INSTALLATION
 
-`pip install gener8app`
+`pip install create-fastapi-app`
 
 ### COMMAND
 
-`gener8app new [project_name]`
+`create-fastapi-app new [project_name]`
 
 This command initialized an empty git repository, create a virtual environment using the python builtin `venv` by appending `_evv` to the project name, i.e `[project_name]_env`.
 

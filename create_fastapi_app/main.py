@@ -10,10 +10,58 @@ from rich.progress import track
 
 app = typer.Typer()
 
+BEANIE_ORM = "Beanie"
+SQLALCHEMY_ORM = "SQLAlchemy"
+
+BEANIE_ORM_SETTINGS = """
+import motor.motor_asyncio 
+from motor.motor_asyncio import AsyncIOMotorClient
+from beanie import init_beanie
+
+# Create your database connection and connection here
+async def init_db(): 
+    db = AsyncIOMotorClient(
+        "CONNECTION_URL"
+    )
+    await init_beanie(database=db.db_name, document_models=['project_models_here'])"""
+
+
+SQLALCHEMY_ORM_SETTINGS = """
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
+
+
+# Create your database connection and connection here
+SQLALCHEMY_DATABASE_URL = 'DB_CONNECTION_URL'
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
+SessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine)
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+"""
+
 
 @app.command()
-def new(project_name: str = typer.Argument(..., help="The name of the project")):
-
+def new(
+    project_name: str = typer.Argument(..., help="The name of the project"),
+    orm_typ: str = typer.prompt(
+        f"What ORM do you want to use for this project? [{SQLALCHEMY_ORM}/{BEANIE_ORM}]",
+        default=f"{SQLALCHEMY_ORM}",
+    ),
+):
     venv = f"{project_name}_env"
     total = 0
 
@@ -58,6 +106,13 @@ def new(project_name: str = typer.Argument(..., help="The name of the project"))
             if directory == "config":
                 f.write("# Create your project configurations here")
             elif directory == "database":
+                if orm_typ.lower() == BEANIE_ORM.lower():
+                    f.write(BEANIE_ORM_SETTINGS)
+                elif orm_typ.lower() == SQLALCHEMY_ORM:
+                    f.write(SQLALCHEMY_ORM_SETTINGS)
+                else:
+                    f.write(SQLALCHEMY_ORM_SETTINGS)
+            elif directory == "database" and orm_typ.lower() == SQLALCHEMY_ORM.lower():
                 f.write("# Create your database connection and configurations here")
             elif directory == "models":
                 f.write("# Create your models here")
